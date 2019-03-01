@@ -28,6 +28,7 @@ function buildCharts(sample) {
 
   // @TODO: Use `d3.json` to fetch the sample data for the plots
   d3.json(url).then(function(data){
+    console.log("new chart",sample);
     // @TODO: Build a Pie Chart
     console.log(data.otu_ids.slice(0,10));
     var pie_data_arr=[{"values" : data.sample_values.slice(0,10),
@@ -38,7 +39,7 @@ function buildCharts(sample) {
                   textinfo: 'percent'
                 }];
     var layout = {title: 'Sample :'.concat(sample)};            
-    Plotly.plot("pie",pie_data_arr,layout);            
+    Plotly.newPlot("pie",pie_data_arr,layout);            
 
   
     // @TODO: Build a Bubble Chart using the sample data
@@ -56,7 +57,7 @@ function buildCharts(sample) {
       xaxis: { title: "OTU ID" }
     };
    
-    Plotly.plot("bubble",bubble_data_arr,bubbleLayout);
+    Plotly.newPlot("bubble",bubble_data_arr,bubbleLayout);
 
   });
     // HINT: You will need to use slice() to grab the top 10 sample_values,
